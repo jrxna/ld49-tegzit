@@ -99,7 +99,7 @@ html {
 	align-items: center;
 }
 
-.governorName {
+.governor {
 	display: block;
 }
 
@@ -119,6 +119,13 @@ html {
 	justify-content: space-between;
 }
 
+.dollarAmount::before {
+	content: "$";
+}
+
+popApproval::after {
+	content: "%";
+}
 
 
 .fadeInOut {
@@ -128,4 +135,8 @@ html {
 [aria-hidden='true'] {
 	opacity: 0;
 	pointer-events: none;
+}
+
+.removed {
+	display: none;
 }
