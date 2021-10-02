@@ -3,10 +3,6 @@ html {
 	color: white;
 }
 
-.modal.hidden {
-	display: none;
-}
-
 .fullScreenModal {
 	height: 100vh;
 	width: 100vw;
@@ -121,4 +117,15 @@ html {
 .statBar {
 	display: flex;
 	justify-content: space-between;
+}
+
+
+
+.fadeInOut {
+	opacity: 1;
+	transition: opacity 0.6s;
+}
+[aria-hidden='true'] {
+	opacity: 0;
+	pointer-events: none;
 }
