@@ -25,6 +25,7 @@ class UI {
 			gazzUsagePercentChange: document.querySelector('.gazzUsagePercentChange'),
 			genDemand: document.querySelector('.genDemandValue'),
 			genDemandPercentChange: document.querySelector('.genDemandPercentChange'),
+			genCount: document.querySelector('.genCountValue'),
 			gazzIndustryDonations: document.querySelector('.gazzIndustryValue'),
 			energyIndustryDonations: document.querySelector('.energyIndustryValue'),
 			generatorIndustryDonations: document.querySelector('.generatorIndustryValue'),
