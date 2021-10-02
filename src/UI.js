@@ -23,8 +23,8 @@ class UI {
 			gazzIndustryDonations: document.querySelector('.gazzIndustryValue'),
 			energyIndustryDonations: document.querySelector('.energyIndustryValue'),
 			generatorIndustryDonations: document.querySelector('.generatorIndustryValue'),
-			population: document.querySelector('.populationValue'),
-			populationPercentChange: document.querySelector('.populationValuePercentChange'),
+			populationFields: document.querySelectorAll('.populationValue'),
+			populationPercentChangeFields: document.querySelectorAll('.populationValuePercentChange'),
 			popApproval: document.querySelector('.popApprovalValue'),
 			popInDanger: document.querySelector('.popInDangerValue'),
 		}
