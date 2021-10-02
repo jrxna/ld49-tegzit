@@ -72,18 +72,31 @@ class UI {
 	
 	showInGameModal(title, text, button1Text, button1Action, button2Text, button2Action) {
 		this.show(this.elements.inGameModal);
-		this.inGameModalTitle.innerText = title;
-		this.inGameModalText.innerText = text;
-		this.inGameModalButton1.innerText = button1Text;
-		this.inGameModalButton2.innerText = button2Text;
-		this.inGameModalButton1.onclick = button1Action;
-		this.inGameModalButton2.onclick = button2Action;
+		
+		if button1Text == undefined {
+			this.remove(this.elements.inGameModalButton1);
+		} else {
+			this.show(this.elements.inGameModalButton1);
+		}
+		
+		if button2Text == undefined {
+			this.remove(this.elements.inGameModalButton2);
+		} else {
+			this.show(this.elements.inGameModalButton2);
+		}
+		
+		this.elements.inGameModalTitle.innerText = title;
+		this.elements.inGameModalText.innerText = text;
+		this.elements.inGameModalButton1.innerText = button1Text;
+		this.elements.inGameModalButton2.innerText = button2Text;
+		this.elements.inGameModalButton1.onclick = button1Action;
+		this.elements.inGameModalButton2.onclick = button2Action;
 	}
 	
 	clearInGameModal() {
 		this.hide(this.elements.inGameModal);
-		this.inGameModalButton1.onclick = '';
-		this.inGameModalButton2.onclick = '';
+		this.elements.inGameModalButton1.onclick = '';
+		this.elements.inGameModalButton2.onclick = '';
 	}
 }
 
