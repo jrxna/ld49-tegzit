@@ -6,7 +6,12 @@ class UI {
 			gameplayUI: document.querySelector('.gameplayUI'),
 			introModal: document.querySelector('.intro'),
 			acceptIntroButton: document.querySelector('.acceptIntro'),
-			resignButton: document.querySelector('resignGovernor'),
+			resignButton: document.querySelector('.resignGovernor'),
+			inGameModal: document.querySelector('.inGameModal'),
+			inGameModalTitle: document.querySelector('.inGameModalTitle'),
+			inGameModalText: document.querySelector('.inGameModalText'),
+			inGameModalButton1: document.querySelector('.inGameModalButton1'),
+			inGameModalButton2: document.querySelector('.inGameModalButton2'),
 		}
 		
 		this.outputs = {
@@ -63,6 +68,22 @@ class UI {
 	show(element) {
 		element.setAttribute('aria-hidden', 'false');
 		element.classList.remove('removed');
+	}
+	
+	showInGameModal(title, text, button1Text, button1Action, button2Text, button2Action) {
+		this.show(this.elements.inGameModal);
+		this.inGameModalTitle.innerText = title;
+		this.inGameModalText.innerText = text;
+		this.inGameModalButton1.innerText = button1Text;
+		this.inGameModalButton2.innerText = button2Text;
+		this.inGameModalButton1.onclick = button1Action;
+		this.inGameModalButton2.onclick = button2Action;
+	}
+	
+	clearInGameModal() {
+		this.hide(this.elements.inGameModal);
+		this.inGameModalButton1.onclick = '';
+		this.inGameModalButton2.onclick = '';
 	}
 }
 
