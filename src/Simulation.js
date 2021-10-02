@@ -12,7 +12,7 @@ class Simulation {
 	getPopulation() {
 		let population = 0;
 		for (const subgrid in this.world) {
-			population += subgrid.getPopulation();
+			population += this.world[subgrid].getPopulation();
 		}
 		return population;
 	}
@@ -20,7 +20,7 @@ class Simulation {
 	getPopulationInDanger() {
 		let popInDanger = { orange: 0, purple: 0, total: 0 };
 		for (const subgrid in this.world) {
-			const subgridPop = subgrid.getPopulationInDanger();
+			const subgridPop = this.world[subgrid].getPopulationInDanger();
 			popInDanger.orange += subgridPop.orange;
 			popInDanger.purple += subgridPop.purple;
 			popInDanger.total += subgridPop.total;
@@ -31,11 +31,36 @@ class Simulation {
 	getPoweredPopulation() {
 		let isPoweredPopulation = 0;
 		for (const subgrid in this.world) {
-			if (subgrid.isPowered) {
-				isPoweredPopulation += subgrid.getPopulation();
+			if (this.world[subgrid].isPowered) {
+				isPoweredPopulation += this.world[subgrid].getPopulation();
 			}
 		}
 		return isPoweredPopulation;
+	}
+	
+	getAvgPurpleApprovalRating() {
+		let total = 0;
+		let totalPop = 0;
+		for (const subgrid in this.world) {
+			total += this.world[subgrid].purpleCandidateApprovalRating;
+			totalPop += this.world[subgrid].getPopulation();
+		}
+		return total / totalPop;
+	}
+	
+	hourTick(outdoorTemperature = 72, orangeGovernorInPower = true) {
+		for (const subgrid in this.world) {
+			this.world[subgrid].hourTick(outdoorTemperature, orangeGovernorInPower);
+		}
+	}
+	
+	// returns count of generators purchased
+	buyGenerators() {
+		let totalGensBought = 0;
+		for (const subgrid in this.world) {
+			totalGensBought += this.world[subgrid].buyGenerators();
+		}
+		return totalGensBought;
 	}
 }
 
@@ -47,6 +72,7 @@ class Subgrid {
 		this.indoorTemperature = 72;
 		this.generatorCount = 0;
 		this.generatorDemandPop = 0;
+		this.purpleCandidateApprovalRating = 0.5;
 	}
 	
 	getPopulation() {
@@ -77,7 +103,7 @@ class Subgrid {
 	}
 	
 	// passing of one hour
-	hourTick(outdoorTemperature = 72) {
+	hourTick(outdoorTemperature = 72, orangeGovernorInPower = true) {
 		// calculate harm to population
 		if (!this.isPowered && this.indoorTemperature < SAFE_TEMP) {
 			const populationInDanger = this.getPopulationInDanger();
@@ -100,6 +126,19 @@ class Subgrid {
 		// if there are more generators than people, reduce generators
 		if( this.generatorCount > this.getPopulation() ) {
 			this.generatorCount = this.getPopulation();
+		}
+		
+		// update approval rating
+		const tempBelow72 = 72 - this.indoorTemperature;
+		const discomfort = Math.min(30, tempBelow72) / 30;
+		if (orangeGovernorInPower) {
+			// if the current governor is orange, purple will approve more highly of the purple candidate if the temp is uncomfortable
+			const possibleApprovalChange = 0.1;
+			this.purpleCandidateApprovalRating += possibleApprovalChange * discomfort;
+		} else {
+			// if the current governor is purple, purple will approve less highly of their own governor if the temp is uncomfortable
+			const possibleApprovalChange = 0.05;
+			this.purpleCandidateApprovalRating -= possibleApprovalChange * discomfort;
 		}
 	}
 	
