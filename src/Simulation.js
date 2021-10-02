@@ -52,6 +52,8 @@ class Simulation {
 	}
 	
 	hourTick(outdoorTemperature = 72, orangeGovernorInPower = true) {
+		// TODO: set subgrid power status based on power plant capacity?
+		
 		for (const subgrid in this.world) {
 			this.world[subgrid].hourTick(outdoorTemperature, orangeGovernorInPower);
 		}
