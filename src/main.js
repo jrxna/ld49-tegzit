@@ -1,4 +1,5 @@
 import { UI } from './UI.js';
-import { Simulation } from './Simulation.js';
+import { Game } from './Game.js';
 
 let ui = new UI();
+let game = new Game(ui);

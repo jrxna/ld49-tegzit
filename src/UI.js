@@ -74,13 +74,13 @@ class UI {
 	showInGameModal(title, text, button1Text, button1Action, button2Text, button2Action) {
 		this.show(this.elements.inGameModal);
 		
-		if button1Text == undefined {
+		if (button1Text == undefined) {
 			this.remove(this.elements.inGameModalButton1);
 		} else {
 			this.show(this.elements.inGameModalButton1);
 		}
 		
-		if button2Text == undefined {
+		if (button2Text == undefined) {
 			this.remove(this.elements.inGameModalButton2);
 		} else {
 			this.show(this.elements.inGameModalButton2);
