@@ -1,0 +1,94 @@
+html {
+	background-color: #111;
+	color: white;
+}
+
+.orange {
+	color: darkorange;
+}
+.purple {
+	color: mediumpurple;
+}
+
+.currency::before {
+	content: "$";
+}
+.temperature::before {
+	content: "❄️ ";
+}
+.temperature::after {
+	content: "°";
+}
+.gridStability::after {
+	content: "%"
+}
+
+.value {
+	font-variant-numeric: tabular-nums;
+}
+
+.positiveChange {
+	font-weight: bold;
+	color: lawngreen;
+}
+.positiveChange::before {
+	content: "(+"
+}
+.positiveChange::after {
+	content: "%)"
+}
+
+.negativeChange {
+	font-weight: bold;
+	color: darkred;
+}
+.negativeChange::before {
+	content: "(-"
+}
+.negativeChange::after {
+	content: "%)"
+}
+
+.gameplayUI {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: stretch;
+	width: 80ch;
+	
+	margin: 1em auto;
+}
+.gameplayUI * {
+	max-width: 80ch;
+}
+
+.uiSection {
+	background-color: #333;
+	border: 1px solid white;
+	padding: 0em 1em;
+}
+
+.statusBar {
+	display: flex;
+	justify-content: space-between;
+}
+
+.governorName {
+	display: block;
+}
+
+.conditionsBar {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	align-content: center;
+}
+
+.map {
+	padding: 0px;
+}
+
+.statBar {
+	display: flex;
+	justify-content: space-between;
+}
