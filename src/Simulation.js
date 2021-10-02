@@ -120,7 +120,7 @@ class Subgrid {
 		if(this.isPowered) {
 			this.indoorTemperature += (72 - this.indoorTemperature) / 2;
 		} else {
-			this.indoorTemperature -= (this.indoorTemperature - outdoorTemperature) / 4;
+			this.indoorTemperature -= (this.indoorTemperature - outdoorTemperature) / 10;
 		}
 		
 		// update generator demand
