@@ -6,6 +6,27 @@ class UI {
 			gameplayUI: document.querySelector('.gameplayUI'),
 			introModal: document.querySelector('.intro'),
 			acceptIntroButton: document.querySelector('.acceptIntro'),
+			resignButton: document.querySelector('resignGovernor'),
+		}
+		
+		this.outputs = {
+			governorName: document.querySelector('.governorName'),
+			orangeFunds: document.querySelector('.orangeFunds'),
+			purpleFunds: document.querySelector('.purpleFunds'),
+			date: document.querySelector('.date'),
+			temperature: document.querySelector('.temperature'),
+			gridStability: document.querySelector('.gridStability'),
+			gazzUsage: document.querySelector('.gazzUsageValue'),
+			gazzUsagePercentChange: document.querySelector('.gazzUsagePercentChange'),
+			genSales: document.querySelector('.genSalesValue'),
+			genSalesPercentChange: document.querySelector('.genSalesPercentChange'),
+			gazzIndustryDonations: document.querySelector('.gazzIndustryValue'),
+			energyIndustryDonations: document.querySelector('.energyIndustryValue'),
+			generatorIndustryDonations: document.querySelector('.generatorIndustryValue'),
+			population: document.querySelector('.populationValue'),
+			populationPercentChange: document.querySelector('.populationValuePercentChange'),
+			popApproval: document.querySelector('.popApprovalValue'),
+			popInDanger: document.querySelector('.popInDangerValue'),
 		}
 		
 		this.contentWarningAccepted = false;
@@ -35,8 +56,13 @@ class UI {
 		element.setAttribute('aria-hidden', 'true');
 	}
 	
+	remove(element) {
+		element.classList.add('removed');
+	}
+	
 	show(element) {
 		element.setAttribute('aria-hidden', 'false');
+		element.classList.remove('removed');
 	}
 }
 
