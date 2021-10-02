@@ -2,12 +2,25 @@ const SAFE_TEMP = 60; // vaguely based on https://assets.publishing.service.gov.
 const PERCENT_DANGER_PER_DEGREE = 0.1;
 const POP_PER_GEN = 3; // population protected by a single generator, assume household of 3
 
+const GAZZ_USAGE_PER_HOUR_PER_POP = 0.25;
+const GAZZ_USAGE_PER_HOUR_PER_GEN = 0.5;
+
+// energy industry donation amounts sourced from https://www.houstonchronicle.com/opinion/editorials/article/Editorial-We-froze-and-Abbott-got-paid-1-16354431.php
+const BASELINE_ENERGY_DONATION = 250000;
+const FRIENDLY_ENERGY_DONATION = 1000000;
+
+const DONATION_PER_GEN_SOLD = 10;
+
+const DONATION_PER_GAZZ_BARREL = 100;
+
 class Simulation {
 	constructor() {
 		this.world = {
 			Youstonia: new Subgrid(2304580 * 0.3, 2304580 * 0.7),
 			Amalgopolis: new Subgrid(7637387 * 0.5, 7637387 * 0.5),
 		}
+		this.donations = new Donations();
+		this.gridWinterized = false;
 	}
 	
 	getPopulation() {
@@ -51,12 +64,16 @@ class Simulation {
 		return total / totalPop;
 	}
 	
+	// returns gazz usage from this hour
 	hourTick(outdoorTemperature = 72, orangeGovernorInPower = true) {
 		// TODO: set subgrid power status based on power plant capacity?
 		
+		let gazzUsage = 0;
 		for (const subgrid in this.world) {
-			this.world[subgrid].hourTick(outdoorTemperature, orangeGovernorInPower);
+			gazzUsage += this.world[subgrid].hourTick(outdoorTemperature, orangeGovernorInPower);
 		}
+		
+		return gazzUsage;
 	}
 	
 	// returns count of generators purchased
@@ -107,7 +124,7 @@ class Subgrid {
 		}
 	}
 	
-	// passing of one hour
+	// passing of one hour, returns gazz usage in barrels
 	hourTick(outdoorTemperature = 72, orangeGovernorInPower = true) {
 		// calculate harm to population
 		if (!this.isPowered && this.indoorTemperature < SAFE_TEMP) {
@@ -145,6 +162,17 @@ class Subgrid {
 			const possibleApprovalChange = 0.05;
 			this.purpleCandidateApprovalRating -= possibleApprovalChange * discomfort;
 		}
+		
+		// calculate gazz usage
+		let gazzUsage = 0;
+		if (this.powered) {
+			gazzUsage = GAZZ_USAGE_PER_HOUR_PER_POP * this.getPopulation();
+		} else {
+			const generatorGazzUsage = this.generatorCount * GAZZ_USAGE_PER_HOUR_PER_GEN;
+			const generatorPopGazzUsage = this.generatorCount * POP_PER_GEN * GAZZ_USAGE_PER_HOUR_PER_POP;
+			gazzUsage = generatorGazzUsage + generatorPopGazzUsage;
+		}
+		return gazzUsage;
 	}
 	
 	buyGenerators() {
@@ -158,6 +186,65 @@ class Subgrid {
 		}
 		
 		return generatorsPurchased;
+	}
+}
+
+class Donations {
+	constructor() {
+		this.gazzIndustryDonations = 0;
+		this.energyIndustryDonations = 0;
+		this.generatorIndustryDonations = 0;
+	}
+	
+	// returns added amount
+	applyEnergyDonations(winterized = false, governorIsOrange = true) {
+		let amountToAdd = 0;
+		if (governorIsOrange) {
+			if (winterized) {
+				amountToAdd = BASELINE_ENERGY_DONATION;
+			} else {
+				amountToAdd = FRIENDLY_ENERGY_DONATION;
+			}
+		} else {
+			if (winterized) {
+				amountToAdd = FRIENDLY_ENERGY_DONATION;
+			} else {
+				amountToAdd = BASELINE_ENERGY_DONATION;
+			}
+		}
+		this.energyIndustryDonations += amountToAdd;
+		return amountToAdd;
+	}
+	
+	// returns added amount
+	applyGeneratorDonations(salesCount, governorIsOrange = true) {
+		let amountToAdd = DONATION_PER_GEN_SOLD * salesCount;
+		
+		if(!governorIsOrange) {
+			// if generators are sold under a purple governor, the industry will only donate half as much of their profits to the orange party
+			amountToAdd = amountToAdd / 2;
+		}
+		
+		this.generatorIndustryDonations += amountToAdd;
+		return amountToAdd;
+	}
+	
+	// returns added amount
+	applyGazzDonations(gazzUsage, governorIsOrange = true) {
+		let amountToAdd = DONATION_PER_GAZZ_BARREL * gazzUsage;
+		
+		if(!governorIsOrange) {
+			amountToAdd = amountToAdd / 2;
+		}
+		
+		this.gazzIndustryDonations += amountToAdd;
+		return amountToAdd;
+	}
+	
+	resetAllDonations() {
+		this.gazzIndustryDonations = 0;
+		this.energyIndustryDonations = 0;
+		this.generatorIndustryDonations = 0;
 	}
 }
 
