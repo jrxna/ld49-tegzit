@@ -1,5 +1,6 @@
-let SAFE_TEMP = 60; // vaguely based on https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/776497/Min_temp_threshold_for_homes_in_winter.pdf
-let PERCENT_DANGER_PER_DEGREE = 0.1;
+const SAFE_TEMP = 60; // vaguely based on https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/776497/Min_temp_threshold_for_homes_in_winter.pdf
+const PERCENT_DANGER_PER_DEGREE = 0.1;
+const POP_PER_GEN = 3; // population protected by a single generator, assume household of 3
 
 class Simulation {
 	constructor() {
@@ -28,11 +29,13 @@ class Simulation {
 		return popInDanger;
 	}
 	
-	getPoweredPopulation() {
+	getPoweredPopulation(includeGenerators = true) {
 		let isPoweredPopulation = 0;
 		for (const subgrid in this.world) {
 			if (this.world[subgrid].isPowered) {
 				isPoweredPopulation += this.world[subgrid].getPopulation();
+			} else if (includeGenerators) {
+				isPoweredPopulation += Math.min(this.world[subgrid].generatorCount * POP_PER_GEN, this.world[subgrid].getPopulation());
 			}
 		}
 		return isPoweredPopulation;
@@ -80,7 +83,7 @@ class Subgrid {
 	}
 	
 	getPopulationInDanger() {
-		const popProtectedByGenerators = Math.max(this.getPopulation(), generatorCount * 3); // assume avg household size
+		const popProtectedByGenerators = Math.min(this.getPopulation(), generatorCount * POP_PER_GEN);
 		// let susceptiblePopulation = orangePopulation + purplePopulation - popProtectedByGenerators;
 		const susceptiblePurple = this.purplePopulation - popProtectedByGenerators / 3; // assume 1/3 of generators are owned by purple
 		const susceptibleOrange = this.orangePopulation - popProtectedByGenerators / 3 * 2; // assume 2/3 of generators are owned by orange
