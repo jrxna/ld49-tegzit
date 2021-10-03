@@ -1,5 +1,6 @@
 import { Simulation } from './Simulation.js';
 import { TimeAndDate } from './TimeAndDate.js';
+import { orangeGovernors } from './Governors.js';
 
 class Game {
 	constructor(ui) {
@@ -8,8 +9,11 @@ class Game {
 		this.gameState = new GameState();
 		
 		this.orangeGovernor = true; // TODO: make this dynamic or something
+		this.currentGovernorIndex = 0;
 		
 		this.ui.startup = this.startGame.bind(this);
+		
+		this.ui.elements.resignButton.onclick = this.resignGovernor.bind(this);
 	}
 	
 	startGame() {
@@ -71,6 +75,7 @@ class Game {
 	}
 	
 	updateUI() {
+		this.ui.outputs.governorName.textContent = orangeGovernors[this.currentGovernorIndex];
 		this.ui.outputs.orangeFunds.textContent = this.simulation.donations.getOrangeDonations();
 		this.ui.outputs.purpleFunds.textContent = this.simulation.donations.getPurpleDonations();
 		this.ui.outputs.date.textContent = this.gameState.timeAndDate.getFriendlyString();
@@ -91,6 +96,28 @@ class Game {
 	
 	updateDate() {
 		this.ui.outputs.date.textContent = this.gameState.timeAndDate.getFriendlyString();
+	}
+	
+	resignGovernor() {
+		this.gameState.timeAndDate.stopTime(); // pause for now
+		
+		const exitingGovernorName = orangeGovernors[this.currentGovernorIndex];
+		
+		this.currentGovernorIndex += 1;
+		if (this.currentGovernorIndex >= orangeGovernors.length) {
+			this.currentGovernorIndex = 0;
+		}
+		
+		const newGovernorName = orangeGovernors[this.currentGovernorIndex];
+		
+		const newGovDescription = this.currentGovernorIndex > 1 ? `As dictated by the Constitution of Tegzit, the legislative branch elects ${newGovernorName} to fill the empty seat.` : `Lieutenant Governor ${newGovernorName} steps in to take the empty seat.`;
+		
+		this.ui.showInGameModal(
+			`Goobernor ${exitingGovernorName} Resigns`, 
+			`The Goobernor of Tegzit, ${exitingGovernorName}, has resigned in disgrace. ${newGovDescription}`, 
+			'Ok.', 
+			this.continueGame.bind(this)
+		);
 	}
 }
 
