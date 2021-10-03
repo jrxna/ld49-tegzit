@@ -175,7 +175,7 @@ class Game {
 		
 		this.ui.showInGameModal(
 			`Goobernor ${exitingGovernorName} Resigns`, 
-			`The Goobernor of Tegzit, ${exitingGovernorName}, has resigned in disgrace. Lootenant Goobernor ${newGovernorName} steps in to take the empty seat, then the legislators choose a new Lootenant Goobernor from the same party.`, 
+			`The Goobernor of Tegzit, ${exitingGovernorName}, has resigned in disgrace. Lootenant Goobernor ${newGovernorName} takes over the empty seat, then the legislators choose a new Lootenant Goobernor from the same party.`, 
 			'Ok.', 
 			this.continueGame.bind(this)
 		);
