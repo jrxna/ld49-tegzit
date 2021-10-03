@@ -5,14 +5,6 @@ const POP_PER_GEN = 3; // population protected by a single generator, assume hou
 const GAZZ_USAGE_PER_HOUR_PER_POP = 0.25;
 const GAZZ_USAGE_PER_HOUR_PER_GEN = 0.5;
 
-// energy industry donation amounts sourced from https://www.houstonchronicle.com/opinion/editorials/article/Editorial-We-froze-and-Abbott-got-paid-1-16354431.php
-const BASELINE_ENERGY_DONATION = 250000;
-const FRIENDLY_ENERGY_DONATION = 1000000;
-
-const DONATION_PER_GEN_SOLD = 10;
-
-const DONATION_PER_GAZZ_BARREL = 100;
-
 import { Donations } from './Donations.js';
 
 class Simulation {
@@ -29,6 +21,14 @@ class Simulation {
 		let population = 0;
 		for (const subgrid in this.world) {
 			population += this.world[subgrid].getPopulation();
+		}
+		return population;
+	}
+	
+	getPurplePopulation() {
+		let population = 0;
+		for (const subgrid in this.world) {
+			population += this.world[subgrid].purplePopulation;
 		}
 		return population;
 	}
@@ -163,6 +163,11 @@ class Subgrid {
 			// if the current governor is purple, purple will approve less highly of their own governor if the temp is uncomfortable
 			const possibleApprovalChange = 0.05;
 			this.purpleCandidateApprovalRating -= possibleApprovalChange * discomfort;
+		}
+		if (this.purpleCandidateApprovalRating > 1) {
+			this.purpleCandidateApprovalRating = 1;
+		} else if (this.purpleCandidateApprovalRating < 0) {
+			this.purpleCandidateApprovalRating = 0;
 		}
 		
 		// calculate gazz usage

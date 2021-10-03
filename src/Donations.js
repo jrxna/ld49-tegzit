@@ -1,9 +1,19 @@
+// energy industry donation amounts sourced from https://www.houstonchronicle.com/opinion/editorials/article/Editorial-We-froze-and-Abbott-got-paid-1-16354431.php
+const BASELINE_ENERGY_DONATION = 250000;
+const FRIENDLY_ENERGY_DONATION = 1000000;
+
+const DONATION_PER_GEN_SOLD = 10;
+
+const DONATION_PER_GAZZ_BARREL = 100;
+
+const GRASSROOTS_DONATION_MAX_PER_POP = 1;
+
 class Donations {
 	constructor() {
 		this.gazzIndustryDonations = 0;
 		this.energyIndustryDonations = 0;
 		this.generatorIndustryDonations = 0;
-		// TODO: grassroots donations to purple
+		this.purpleCampaignGrassrootsDonations = 0;
 	}
 	
 	// returns added amount
@@ -51,10 +61,15 @@ class Donations {
 		return amountToAdd;
 	}
 	
+	applyPurpleGrassrootsDonations(purplePopulation = 0, averageApprovalRating = 0.5) {
+		this.purpleCampaignGrassrootsDonations = purplePopulation * GRASSROOTS_DONATION_MAX_PER_POP * averageApprovalRating;
+	}
+	
 	resetAllDonations() {
 		this.gazzIndustryDonations = 0;
 		this.energyIndustryDonations = 0;
 		this.generatorIndustryDonations = 0;
+		this.purpleCampaignGrassrootsDonations = 0;
 	}
 }
 
