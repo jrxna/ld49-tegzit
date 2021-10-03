@@ -62,7 +62,8 @@ class Donations {
 	}
 	
 	applyPurpleGrassrootsDonations(purplePopulation = 0, averageApprovalRating = 0.5) {
-		this.purpleCampaignGrassrootsDonations = purplePopulation * GRASSROOTS_DONATION_MAX_PER_POP * averageApprovalRating;
+		const newPurpleDonationsValue = purplePopulation * GRASSROOTS_DONATION_MAX_PER_POP * averageApprovalRating;
+		this.purpleCampaignGrassrootsDonations = Math.max(this.purpleCampaignGrassrootsDonations, newPurpleDonationsValue); // donations can't be less than they already are!
 	}
 	
 	resetAllDonations() {
