@@ -99,7 +99,7 @@ class Game {
 		// TODO: some kind of dialog box or something?
 		const generatorPurchases = this.simulation.buyGenerators();
 		this.simulation.donations.applyGeneratorDonations(generatorPurchases, this.orangeGovernor);
-		this.simulation.applyEnergyDonations(this.simulation.gridWinterized, this.orangeGovernor);
+		this.simulation.donations.applyEnergyDonations(this.simulation.gridWinterized, this.orangeGovernor);
 		
 		// when storm over
 		if(this.gameState.timeAndDate.getStormLengthSoFar() >= this.gameState.storm.length) {
