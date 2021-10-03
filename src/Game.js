@@ -131,7 +131,7 @@ class Game {
 		const orangeWin = this.simulation.donations.getOrangeDonations() > this.simulation.getPurpleDonations();
 		this.ui.showInGameModal(
 			`${orangeWin ? 'Orangeatives' : 'Purpleists'} win the goobernatorial election!`, 
-			orangeWin ? `Those goobers better prepare for another four years with ${orangeGovernors[this.currentGovernorIndex]} at the helm.` : `${orangeGovernors[this.currentGovernorIndex]} may have raised $${Math.round(this.simulation.donations.getOrangeDonations())} from wealthy donors, but it looks like most Tegzans weren't pleased with the way they ran things.`,
+			orangeWin ? `After a whopping $${Math.round(this.simulation.donations.getOrangeDonations())} of fundraising by the Orangeative party, those goobers better prepare for another four years with ${orangeGovernors[this.currentGovernorIndex]} at the helm.` : `${orangeGovernors[this.currentGovernorIndex]} was only able to raise $${Math.round(this.simulation.donations.getOrangeDonations())} from the Orangeative party's usual wealthy donors, who were disappointed they didn't have more price-gouging opportunities.`,
 		);
 	}
 	
