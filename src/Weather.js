@@ -4,7 +4,7 @@ function randomInRange(min, max) {
 
 class Storm {
 	constructor() {
-		this.length = Math.floor(Math.random() * 5);
+		this.length = Math.ceil(Math.random() * 3);
 		this.daytimeTemperature = 0;
 		this.nighttimeTemperature = 0;
 		this.regenerateTemps();
