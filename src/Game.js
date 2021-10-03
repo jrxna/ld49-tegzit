@@ -128,7 +128,7 @@ class Game {
 	}
 	
 	electionCycleOver() {
-		const orangeWin = this.simulation.donations.getOrangeDonations() > this.simulation.getPurpleDonations();
+		const orangeWin = this.simulation.donations.getOrangeDonations() > this.simulation.donations.getPurpleDonations();
 		this.ui.showInGameModal(
 			`${orangeWin ? 'Orangeatives' : 'Purpleists'} win the goobernatorial election!`, 
 			orangeWin ? `After a whopping $${Math.round(this.simulation.donations.getOrangeDonations())} of fundraising by the Orangeative party, those goobers better prepare for another four years with ${orangeGovernors[this.currentGovernorIndex]} at the helm.` : `${orangeGovernors[this.currentGovernorIndex]} was only able to raise $${Math.round(this.simulation.donations.getOrangeDonations())} from the Orangeative party's usual wealthy donors, who were disappointed they didn't have more price-gouging opportunities.`,
