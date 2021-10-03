@@ -1,6 +1,7 @@
 import { Simulation } from './Simulation.js';
 import { TimeAndDate } from './TimeAndDate.js';
 import { orangeGovernors } from './Governors.js';
+import { Storm } from './Weather.js';
 
 class Game {
 	constructor(ui) {
@@ -61,8 +62,12 @@ class Game {
 	}
 	
 	hourlyUpdate() {
-		// TODO: actual temperature
-		const hourlyGazzUsage = this.simulation.hourTick(50, this.orangeGovernor);
+		if (this.simulation.timeAndDate.hour == 9) {
+			this.gameState.storm.regenerateTemps(); // calculate new day's temps at 9
+		}
+		let temperature = this.gameState.storm.calculateTemperatureAtHour(this.simulation.timeAndDate.hour);
+		
+		const hourlyGazzUsage = this.simulation.hourTick(temperature, this.orangeGovernor);
 		this.simulation.donations.applyGazzDonations(hourlyGazzUsage, this.orangeGovernor);
 		this.ui.outputs.gazzUsage.textContent = Math.round(hourlyGazzUsage);
 		
@@ -82,7 +87,7 @@ class Game {
 		this.ui.outputs.orangeFunds.textContent = this.simulation.donations.getOrangeDonations();
 		this.ui.outputs.purpleFunds.textContent = this.simulation.donations.getPurpleDonations();
 		this.ui.outputs.date.textContent = this.gameState.timeAndDate.getFriendlyString();
-		// TODO: set temperature field
+		this.ui.outputs.temperature.textContent = Math.round(this.gameState.storm.calculateTemperatureAtHour(this.gameState.timeAndDate.hour));
 		// TODO: grid stability
 		this.ui.outputs.genDemand.textContent = `${this.simulation.getGenDemandPop()}`;
 		this.ui.outputs.genCount.textContent = this.simulation.getGenCount();
@@ -125,6 +130,7 @@ class Game {
 class GameState {
 	constructor() {
 		this.timeAndDate = new TimeAndDate(0, 13);
+		this.storm = new Storm();
 	}
 }
 

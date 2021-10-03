@@ -44,7 +44,7 @@ html {
 	content: "❄️ ";
 }
 .temperature::after {
-	content: "°";
+	content: " °F";
 }
 .gridStability::after {
 	content: "%"
