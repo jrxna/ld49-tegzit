@@ -12,7 +12,7 @@ class Storm {
 	
 	regenerateTemps() {
 		this.daytimeTemperature = randomInRange(20, 40);
-		this.nighttimeTemperature = Math.min(randomInRange(-2, 40), this.daytimeTemperature);
+		this.nighttimeTemperature = Math.min(randomInRange(-2, 31), this.daytimeTemperature);
 	}
 	
 	calculateTemperatureAtHour(hour = 0, dayOfStorm = 0) {
