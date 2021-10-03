@@ -178,6 +178,19 @@ class UI {
 			}
 		}
 	}
+	
+	resetRegions(simulation) {
+		for(const region in this.regions) {
+			const simRegion = simulation.world[region];
+			
+			simRegion.isPowered = true;
+			simRegion.indoorTemperature = 72;
+			
+			this.regions[region].classList.remove('danger');
+			this.regions[region].classList.remove('cold');
+			this.regions[region].classList.remove('unpowered');
+		}
+	}
 }
 
 export { UI };

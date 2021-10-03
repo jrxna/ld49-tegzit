@@ -112,6 +112,7 @@ class Game {
 		this.gameState.timeAndDate.advanceYear();
 		this.gameState.storm = new Storm();
 		this.simulation.donations.purpleDonationsYearRollover();
+		this.ui.resetRegions(this.simulation);
 		
 		if (this.gameState.timeAndDate.year >= 4) {
 			this.electionCycleOver();
