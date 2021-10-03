@@ -168,7 +168,7 @@ svg .region.unpowered {
 	stroke-width: 4px;
 }
 
-svg .region.danger {
+/* svg .region.danger {
 	stroke-width: 4px;
 	stroke: red;
 	animation: 0.25s linear 0s infinite alternate running flashing;
@@ -179,5 +179,18 @@ svg .region.danger {
 	}
 	100% {
 		stroke: rgb(0,0,0);
+	}
+} */
+
+svg .region.danger {
+	fill: rgb(71, 167, 165);
+	animation: 0.25s linear 0s infinite alternate running flashing;
+}
+@keyframes flashing {
+	0% {
+		fill: rgb(71, 167, 165);
+	}
+	100% {
+		fill: red;
 	}
 }
