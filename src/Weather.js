@@ -15,10 +15,16 @@ class Storm {
 		this.nighttimeTemperature = Math.min(randomInRange(-2, 40), this.daytimeTemperature);
 	}
 	
-	calculateTemperatureAtHour(hour = 0) {
+	calculateTemperatureAtHour(hour = 0, dayOfStorm = 0) {
 		let distanceFromNoon = Math.abs(12 - hour) / 12;
 		let distanceFromMidnight = 1 - distanceFromNoon;
-		return distanceFromNoon * this.nighttimeTemperature + distanceFromMidnight * this.daytimeTemperature;
+		if (dayOfStorm == 0 && hour < 2) {
+			return 45;
+		} else if (dayOfStorm < this.length) {
+			return distanceFromNoon * this.nighttimeTemperature + 	distanceFromMidnight * this.daytimeTemperature;
+		} else {
+			return 65;
+		}
 	}
 }
 

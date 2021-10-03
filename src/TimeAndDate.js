@@ -89,6 +89,10 @@ class TimeAndDate {
 	getFriendlyString() {
 		return `Ferbry ${this.day}, Year ${this.year + 1} ${this.getFriendlyHour()}:${this.getFriendlyMinute()} ${this.getAmPm()}`
 	}
+	
+	getStormLengthSoFar() {
+		return this.day - this.stormStartDay;
+	}
 }
 
 export { TimeAndDate };

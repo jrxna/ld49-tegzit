@@ -142,7 +142,7 @@ class UI {
 				} else {
 					const excessPowerPopCapacity = simulation.availablePowerRatio * simulation.getPopulation() - simulation.getPopUsingGrid();
 					const dependentPopInRegion = simulation.world[region].getPopDependentOnGrid();
-					console.log(excessPowerPopCapacity, dependentPopInRegion);
+					
 					if(dependentPopInRegion <= excessPowerPopCapacity) {
 						this.regions[region].classList.remove('unpowered');
 						simulation.world[region].isPowered = true;

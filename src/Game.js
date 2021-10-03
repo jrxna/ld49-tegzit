@@ -65,7 +65,7 @@ class Game {
 		if (this.gameState.timeAndDate.hour == 9) {
 			this.gameState.storm.regenerateTemps(); // calculate new day's temps at 9
 		}
-		let temperature = this.gameState.storm.calculateTemperatureAtHour(this.gameState.timeAndDate.hour);
+		let temperature = this.gameState.storm.calculateTemperatureAtHour(this.gameState.timeAndDate.hour, this.gameState.timeAndDate.getStormLengthSoFar());
 		
 		const hourlyGazzUsage = this.simulation.hourTick(temperature, this.orangeGovernor);
 		this.simulation.donations.applyGazzDonations(hourlyGazzUsage, this.orangeGovernor);
@@ -85,7 +85,7 @@ class Game {
 	}
 	
 	updateUI() {
-		const temperature = this.gameState.storm.calculateTemperatureAtHour(this.gameState.timeAndDate.hour);
+		const temperature = this.gameState.storm.calculateTemperatureAtHour(this.gameState.timeAndDate.hour, this.gameState.timeAndDate.getStormLengthSoFar());
 		
 		this.ui.outputs.governorName.textContent = orangeGovernors[this.currentGovernorIndex];
 		this.ui.outputs.orangeFunds.textContent = this.simulation.donations.getOrangeDonations();
