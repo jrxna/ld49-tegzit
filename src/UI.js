@@ -35,6 +35,8 @@ class UI {
 			popInDanger: document.querySelector('.popInDangerValue'),
 		}
 		
+		this.startup = undefined;
+		
 		this.contentWarningAccepted = false;
 		this.introAccepted = false;
 		
@@ -56,6 +58,10 @@ class UI {
 		this.introAccepted = true;
 		this.hide(this.elements.introModal);
 		this.show(this.elements.gameplayUI);
+		
+		if (this.startup != undefined) {
+			this.startup();
+		}
 	}
 	
 	hide(element) {
@@ -72,8 +78,6 @@ class UI {
 	}
 	
 	showInGameModal(title, text, button1Text, button1Action, button2Text, button2Action) {
-		this.show(this.elements.inGameModal);
-		
 		if (button1Text == undefined) {
 			this.remove(this.elements.inGameModalButton1);
 		} else {
@@ -86,12 +90,16 @@ class UI {
 			this.show(this.elements.inGameModalButton2);
 		}
 		
-		this.elements.inGameModalTitle.innerText = title;
-		this.elements.inGameModalText.innerText = text;
-		this.elements.inGameModalButton1.innerText = button1Text;
-		this.elements.inGameModalButton2.innerText = button2Text;
+		this.elements.inGameModalTitle.textContent = title;
+		this.elements.inGameModalText.textContent = text;
+		this.elements.inGameModalButton1.textContent = button1Text;
+		this.elements.inGameModalButton2.textContent = button2Text;
 		this.elements.inGameModalButton1.onclick = button1Action;
 		this.elements.inGameModalButton2.onclick = button2Action;
+		
+		setTimeout(function() {
+			this.show(this.elements.inGameModal);
+		}.bind(this), 10);
 	}
 	
 	clearInGameModal() {

@@ -11,6 +11,8 @@ html {
 	flex-direction: column;
 	justify-content: center;
 	position: absolute;
+	top: 0px;
+	left: 0px;
 	background-color: #111;
 }
 .fullScreenModal > * {
@@ -134,7 +136,7 @@ html {
 
 .fadeInOut {
 	opacity: 1;
-	transition: opacity 0.6s;
+	transition: opacity 1s;
 }
 [aria-hidden='true'] {
 	opacity: 0;
