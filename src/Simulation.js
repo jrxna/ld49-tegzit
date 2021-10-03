@@ -41,6 +41,14 @@ class Simulation {
 		return count;
 	}
 	
+	getGenDemandPop() {
+		let pop = 0;
+		for (const subgrid in this.world) {
+			pop += this.world[subgrid].generatorDemandPop;
+		}
+		return pop;
+	}
+	
 	getPopulationInDanger() {
 		let popInDanger = { orange: 0, purple: 0, total: 0 };
 		for (const subgrid in this.world) {
