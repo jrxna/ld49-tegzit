@@ -110,11 +110,9 @@ class Game {
 		
 		const newGovernorName = orangeGovernors[this.currentGovernorIndex];
 		
-		const newGovDescription = this.currentGovernorIndex > 1 ? `As dictated by the Constitution of Tegzit, the legislative branch elects ${newGovernorName} to fill the empty seat.` : `Lieutenant Governor ${newGovernorName} steps in to take the empty seat.`;
-		
 		this.ui.showInGameModal(
 			`Goobernor ${exitingGovernorName} Resigns`, 
-			`The Goobernor of Tegzit, ${exitingGovernorName}, has resigned in disgrace. ${newGovDescription}`, 
+			`The Goobernor of Tegzit, ${exitingGovernorName}, has resigned in disgrace. Lieutenant Governor ${newGovernorName} steps in to take the empty seat.`, 
 			'Ok.', 
 			this.continueGame.bind(this)
 		);
