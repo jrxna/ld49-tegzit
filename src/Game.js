@@ -34,24 +34,42 @@ class Game {
 		this.simulation.gridWinterized = false;
 		this.simulation.donations.applyEnergyDonations(false, this.orangeGovernor);
 		this.ui.clearInGameModal();
-		this.ui.showInGameModal(
-			"💰 Money money money",
-			"Your friend who owns a power plant sends a cool million your way as thanks for the complete lack of regulations. Energy companies in Tegzit can charge $9000 during a shortage for a unit of electricity that would normally cost $50, and love to share with the politicians who allow those shortages to happen.", 
-			"Cool! In Tegzit, political donations don't count as bribes.", 
-			this.continueGame.bind(this)
-		);
+		if (this.gameState.timeAndDate.year == 0) {
+			this.ui.showInGameModal(
+				"💰 Money money money",
+				"Your friend who owns a power plant sends a cool million your way as thanks for the complete lack of regulations. Energy companies in Tegzit can charge $9000 during a shortage for a unit of electricity that would normally cost $50, and love to share with the politicians who allow those shortages to happen.", 
+				"Cool! In Tegzit, political donations don't count as bribes.", 
+				this.continueGame.bind(this)
+			);
+		} else {
+			this.ui.showInGameModal(
+				"💰 Money money money",
+				"Another winter without stable power, another massive donation from your power-plant-owning friends. And another storm on the way. Who could predict what happens next?", 
+				"Maybe I'll be the Goober President someday!", 
+				this.continueGame.bind(this)
+			);
+		}
 	}
 	
 	winterize() {
 		this.simulation.gridWinterized = true;
 		this.simulation.donations.applyEnergyDonations(true, this.orangeGovernor);
 		this.ui.clearInGameModal();
-		this.ui.showInGameModal(
-			"💸 Tsk tsk",
-			"\"I thought I could count on the great state of Tegzit to be friendly to my business instead of telling me what to do,\" says your friend who owns a power plant. You're going to have a harder time raising money for your reelection campaign if you keep this up.", 
-			"Oh", 
-			this.continueGame.bind(this)
-		);
+		if (this.gameState.timeAndDate.year == 0) {
+			this.ui.showInGameModal(
+				"💸 Tsk tsk",
+				"\"I thought I could count on the great state of Tegzit to be friendly to my business instead of telling me what to do,\" says your friend who owns a power plant. You're going to have a harder time raising money for your reelection campaign if you keep this up.", 
+				"Oh", 
+				this.continueGame.bind(this)
+			);
+		} else {
+			this.ui.showInGameModal(
+				"💸 Tsk tsk",
+				"Another storm is on the way, and your former donor looks unhappy. \"How are we supposed to make money off the unsuspecting goobers with you averting all these crises?\" he asks.", 
+				"Uhhh", 
+				this.continueGame.bind(this)
+			);
+		}
 	}
 	
 	continueGame() {
@@ -82,6 +100,34 @@ class Game {
 		const generatorPurchases = this.simulation.buyGenerators();
 		this.simulation.donations.applyGeneratorDonations(generatorPurchases, this.orangeGovernor);
 		this.simulation.applyEnergyDonations(this.simulation.gridWinterized, this.orangeGovernor);
+		
+		// when storm over
+		if(this.gameState.timeAndDate.getStormLengthSoFar() >= this.gameState.storm.length) {
+			this.stormOver();
+		}
+	}
+	
+	stormOver() {
+		this.gameState.timeAndDate.stopTime();
+		this.gameState.timeAndDate.advanceYear();
+		this.gameState.storm = new Storm();
+		
+		if (this.gameState.timeAndDate.year >= 4) {
+			this.electionCycleOver();
+		} else {
+			this.ui.showInGameModal(
+				"The storm passes",
+				`This year's winter storm is over. Only ${4 - this.gameState.timeAndDate.year} more year(s) to go until the next goobernatorial election. But the goobers already want to know: will you order the power plants to be winterized ${this.simulation.gridWinterized ? "again " : ""}for next year?`, 
+				"No way! I don't even want them summer-ized!", 
+				this.skipWinterization.bind(this), 
+				"Winterize them. It's worth it.", 
+				this.winterize.bind(this)
+			);
+		}
+	}
+	
+	electionCycleOver() {
+		// TODO: something
 	}
 	
 	updateUI() {
