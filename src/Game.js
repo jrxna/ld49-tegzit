@@ -135,16 +135,16 @@ class Game {
 		const temperature = this.gameState.storm.calculateTemperatureAtHour(this.gameState.timeAndDate.hour, this.gameState.timeAndDate.getStormLengthSoFar());
 		
 		this.ui.outputs.governorName.textContent = orangeGovernors[this.currentGovernorIndex];
-		this.ui.outputs.orangeFunds.textContent = this.simulation.donations.getOrangeDonations();
-		this.ui.outputs.purpleFunds.textContent = this.simulation.donations.getPurpleDonations();
+		this.ui.outputs.orangeFunds.textContent = Math.round(this.simulation.donations.getOrangeDonations());
+		this.ui.outputs.purpleFunds.textContent = Math.round(this.simulation.donations.getPurpleDonations());
 		this.ui.outputs.date.textContent = this.gameState.timeAndDate.getFriendlyString();
 		this.ui.outputs.temperature.textContent = Math.round(temperature);
 		this.ui.outputs.gridStability.textContent = Math.round(this.simulation.getAvailablePowerRatio(temperature) * 100);
 		this.ui.outputs.genDemand.textContent = `${this.simulation.getGenDemandPop()}`;
 		this.ui.outputs.genCount.textContent = this.simulation.getGenCount();
-		this.ui.outputs.gazzIndustryDonations.textContent = this.simulation.donations.gazzIndustryDonations;
-		this.ui.outputs.generatorIndustryDonations.textContent = this.simulation.donations.generatorIndustryDonations;
-		this.ui.outputs.energyIndustryDonations.textContent = this.simulation.donations.energyIndustryDonations;
+		this.ui.outputs.gazzIndustryDonations.textContent = Math.round(this.simulation.donations.gazzIndustryDonations);
+		this.ui.outputs.generatorIndustryDonations.textContent = Math.round(this.simulation.donations.generatorIndustryDonations);
+		this.ui.outputs.energyIndustryDonations.textContent = Math.round(this.simulation.donations.energyIndustryDonations);
 		this.ui.outputs.populationFields.forEach(function(field) {
 			field.textContent = this.simulation.getPopulation();
 		}.bind(this));
