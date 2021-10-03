@@ -62,10 +62,10 @@ class Game {
 	}
 	
 	hourlyUpdate() {
-		if (this.simulation.timeAndDate.hour == 9) {
+		if (this.gameState.timeAndDate.hour == 9) {
 			this.gameState.storm.regenerateTemps(); // calculate new day's temps at 9
 		}
-		let temperature = this.gameState.storm.calculateTemperatureAtHour(this.simulation.timeAndDate.hour);
+		let temperature = this.gameState.storm.calculateTemperatureAtHour(this.gameState.timeAndDate.hour);
 		
 		const hourlyGazzUsage = this.simulation.hourTick(temperature, this.orangeGovernor);
 		this.simulation.donations.applyGazzDonations(hourlyGazzUsage, this.orangeGovernor);
@@ -74,6 +74,7 @@ class Game {
 		this.simulation.donations.applyPurpleGrassrootsDonations(this.simulation.getPurplePopulation(), this.simulation.getAvgPurpleApprovalRating());
 		
 		this.updateUI();
+		this.ui.updateRegions(this.simulation);
 	}
 	
 	dailyUpdate() {

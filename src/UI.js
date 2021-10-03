@@ -145,6 +145,33 @@ class UI {
 			}.bind(this);
 		}
 	}
+	
+	updateRegions(simulation) {
+		for (const region in this.regions) {
+			const simRegion = simulation.world[region];
+			
+			// update powered state
+			if (simRegion.isPowered) {
+				this.regions[region].classList.remove('unpowered');
+			} else {
+				this.regions[region].classList.add('unpowered');
+			}
+			
+			// update cold state
+			if (simRegion.indoorTemperature < 60) {
+				this.regions[region].classList.add('cold');
+			} else {
+				this.regions[region].classList.remove('cold');
+			}
+			
+			// if more than 1% of the region is in danger, show danger warning
+			if (simRegion.getPopulationInDanger().total > simRegion.getPopulation() / 100) {
+				this.regions[region].classList.add('danger');
+			} else {
+				this.regions[region].classList.remove('danger');
+			}
+		}
+	}
 }
 
 export { UI };

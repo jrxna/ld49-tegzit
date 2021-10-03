@@ -151,6 +151,12 @@ svg *:not(.region) {
 
 svg .region {
 	cursor: pointer;
+	fill: lightgreen;
+	transition: fill 3s linear;
+}
+
+svg .region.cold {
+	fill: rgb(71, 167, 165);
 }
 
 svg .region:hover {
