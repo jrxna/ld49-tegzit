@@ -61,7 +61,7 @@ class Game {
 		// TODO: set temperature field
 		// TODO: grid stability
 		// TODO (somewhere): gazz usage
-		// TODO somewhere else: generator demand
+		// TODO: generator demand
 		this.ui.outputs.genCount.textContent = this.simulation.getGenCount();
 		this.ui.outputs.gazzIndustryDonations.textContent = this.simulation.donations.gazzIndustryDonations;
 		this.ui.outputs.generatorIndustryDonations.textContent = this.simulation.donations.generatorIndustryDonations;
