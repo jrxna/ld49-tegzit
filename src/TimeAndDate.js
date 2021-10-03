@@ -27,9 +27,16 @@ class TimeAndDate {
 	getFriendlyHour() {
 		if (this.hour > 12) {
 			return this.hour - 12;
+		} else if (this.hour == 0) {
+			return 12;
 		} else {
 			return this.hour;
 		}
+	}
+	
+	getFriendlyMinute() {
+		let minuteString = new String(this.minute);
+		return minuteString.padStart(2, "0");
 	}
 	
 	getAmPm() {
@@ -41,7 +48,7 @@ class TimeAndDate {
 	}
 	
 	getFriendlyString() {
-		return `Ferbry ${this.day}, Year ${this.year + 1} ${this.getFriendlyHour()}:${this.minute.padStart(2, "0")} ${this.getAmPm()}`
+		return `Ferbry ${this.day}, Year ${this.year + 1} ${this.getFriendlyHour()}:${this.getFriendlyMinute()} ${this.getAmPm()}`
 	}
 }
 

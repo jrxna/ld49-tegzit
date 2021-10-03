@@ -16,6 +16,14 @@ class Donations {
 		this.purpleCampaignGrassrootsDonations = 0;
 	}
 	
+	getOrangeDonations() {
+		return this.gazzIndustryDonations + this.energyIndustryDonations + this.generatorIndustryDonations;
+	}
+	
+	getPurpleDonations() {
+		return this.purpleCampaignGrassrootsDonations;
+	}
+	
 	// returns added amount
 	applyEnergyDonations(winterized = false, governorIsOrange = true) {
 		let amountToAdd = 0;

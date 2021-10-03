@@ -7,6 +7,8 @@ class Game {
 		this.simulation = new Simulation();
 		this.gameState = new GameState();
 		
+		this.orangeGovernor = true; // TODO: make this dynamic or something
+		
 		this.ui.startup = this.startGame.bind(this);
 	}
 	
@@ -22,6 +24,8 @@ class Game {
 	}
 	
 	skipWinterization() {
+		this.simulation.gridWinterized = false;
+		this.simulation.donations.applyEnergyDonations(false, this.orangeGovernor);
 		this.ui.clearInGameModal();
 		this.ui.showInGameModal(
 			"Money money money",
@@ -32,6 +36,8 @@ class Game {
 	}
 	
 	winterize() {
+		this.simulation.gridWinterized = true;
+		this.simulation.donations.applyEnergyDonations(true, this.orangeGovernor);
 		this.ui.clearInGameModal();
 		this.ui.showInGameModal(
 			"Tsk tsk",
@@ -43,6 +49,27 @@ class Game {
 	
 	continueGame() {
 		// TODO: something
+		this.ui.clearInGameModal();
+		this.updateUI();
+	}
+	
+	updateUI() {
+		this.ui.outputs.orangeFunds.textContent = this.simulation.donations.getOrangeDonations();
+		this.ui.outputs.purpleFunds.textContent = this.simulation.donations.getPurpleDonations();
+		this.ui.outputs.date.textContent = this.gameState.timeAndDate.getFriendlyString();
+		// TODO: set temperature field
+		// TODO: grid stability
+		// TODO (somewhere): gazz usage
+		// TODO somewhere else: generator demand
+		this.ui.outputs.genCount.textContent = this.simulation.getGenCount();
+		this.ui.outputs.gazzIndustryDonations.textContent = this.simulation.donations.gazzIndustryDonations;
+		this.ui.outputs.generatorIndustryDonations.textContent = this.simulation.donations.generatorIndustryDonations;
+		this.ui.outputs.energyIndustryDonations.textContent = this.simulation.donations.energyIndustryDonations;
+		this.ui.outputs.populationFields.forEach(function(field) {
+			field.textContent = this.simulation.getPopulation();
+		}.bind(this));
+		this.ui.outputs.popApproval.textContent = this.simulation.getAvgPurpleApprovalRating();
+		this.ui.outputs.popInDanger.textContent = this.simulation.getPopulationInDanger();
 	}
 }
 

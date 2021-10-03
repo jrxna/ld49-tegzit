@@ -33,6 +33,14 @@ class Simulation {
 		return population;
 	}
 	
+	getGenCount() {
+		let count = 0;
+		for (const subgrid in this.world) {
+			count += this.world[subgrid].generatorCount;
+		}
+		return count;
+	}
+	
 	getPopulationInDanger() {
 		let popInDanger = { orange: 0, purple: 0, total: 0 };
 		for (const subgrid in this.world) {
@@ -89,7 +97,7 @@ class Simulation {
 }
 
 class Subgrid {
-	Constructor(orangePopulation = 0, purplePopulation = 0) {
+	constructor(orangePopulation = 0, purplePopulation = 0) {
 		this.orangePopulation = Math.round(orangePopulation); // population in this subgrid that leans orange
 		this.purplePopulation = Math.round(purplePopulation); // population in this subgrid that leans purple
 		this.isPowered = true;
@@ -104,7 +112,7 @@ class Subgrid {
 	}
 	
 	getPopulationInDanger() {
-		const popProtectedByGenerators = Math.min(this.getPopulation(), generatorCount * POP_PER_GEN);
+		const popProtectedByGenerators = Math.min(this.getPopulation(), this.generatorCount * POP_PER_GEN);
 		// let susceptiblePopulation = orangePopulation + purplePopulation - popProtectedByGenerators;
 		const susceptiblePurple = this.purplePopulation - popProtectedByGenerators / 3; // assume 1/3 of generators are owned by purple
 		const susceptibleOrange = this.orangePopulation - popProtectedByGenerators / 3 * 2; // assume 2/3 of generators are owned by orange
