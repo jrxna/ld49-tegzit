@@ -3,6 +3,7 @@ class Donations {
 		this.gazzIndustryDonations = 0;
 		this.energyIndustryDonations = 0;
 		this.generatorIndustryDonations = 0;
+		// TODO: grassroots donations to purple
 	}
 	
 	// returns added amount
