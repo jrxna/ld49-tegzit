@@ -13,6 +13,7 @@ class Simulation {
 			Youstonia: new Subgrid(2304580 * 0.3, 2304580 * 0.7),
 			Amalgopolis: new Subgrid(7637388 * 0.5, 7637388 * 0.5),
 			Horn: new Subgrid(18371, 11212),
+			EHorn: new Subgrid(3178,2371),
 			Hammertown: new Subgrid(12837, 8193),
 			Step: new Subgrid(8912, 1038),
 			Face: new Subgrid(12392, 7432),
