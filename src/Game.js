@@ -1,4 +1,5 @@
 import { Simulation } from './Simulation.js';
+import { TimeAndDate } from './TimeAndDate.js';
 
 class Game {
 	constructor(ui) {
@@ -10,9 +11,10 @@ class Game {
 
 class GameState {
 	constructor() {
-		this.year = 0;
-		
+		this.timeAndDate = new TimeAndDate(0, 13);
 	}
+	
+	
 }
 
 export { Game };
