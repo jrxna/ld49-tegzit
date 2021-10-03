@@ -14,6 +14,7 @@ class Donations {
 		this.energyIndustryDonations = 0;
 		this.generatorIndustryDonations = 0;
 		this.purpleCampaignGrassrootsDonations = 0;
+		this.currentYearPurpleDonations = 0;
 	}
 	
 	getOrangeDonations() {
@@ -21,7 +22,7 @@ class Donations {
 	}
 	
 	getPurpleDonations() {
-		return this.purpleCampaignGrassrootsDonations;
+		return this.purpleCampaignGrassrootsDonations + this.currentYearPurpleDonations;
 	}
 	
 	// returns added amount
@@ -71,7 +72,12 @@ class Donations {
 	
 	applyPurpleGrassrootsDonations(purplePopulation = 0, averageApprovalRating = 0.5) {
 		const newPurpleDonationsValue = purplePopulation * GRASSROOTS_DONATION_MAX_PER_POP * averageApprovalRating;
-		this.purpleCampaignGrassrootsDonations = Math.max(this.purpleCampaignGrassrootsDonations, newPurpleDonationsValue); // donations can't be less than they already are!
+		this.currentYearPurpleDonations = Math.max(this.currentYearPurpleDonations, newPurpleDonationsValue); // donations can't be less than they already are!
+	}
+	
+	purpleDonationsYearRollover() {
+		this.purpleCampaignGrassrootsDonations += this.currentYearPurpleDonations;
+		this.currentYearPurpleDonations = 0;
 	}
 	
 	resetAllDonations() {
@@ -79,6 +85,7 @@ class Donations {
 		this.energyIndustryDonations = 0;
 		this.generatorIndustryDonations = 0;
 		this.purpleCampaignGrassrootsDonations = 0;
+		this.currentYearPurpleDonations = 0;
 	}
 }
 

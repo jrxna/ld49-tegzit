@@ -111,6 +111,7 @@ class Game {
 		this.gameState.timeAndDate.stopTime();
 		this.gameState.timeAndDate.advanceYear();
 		this.gameState.storm = new Storm();
+		this.simulation.donations.purpleDonationsYearRollover();
 		
 		if (this.gameState.timeAndDate.year >= 4) {
 			this.electionCycleOver();
