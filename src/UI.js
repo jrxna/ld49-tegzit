@@ -35,6 +35,28 @@ class UI {
 			popInDanger: document.querySelector('.popInDangerValue'),
 		}
 		
+		this.regions = {
+			Horn: document.querySelector('.hornReg'),
+			EHorn: document.querySelector('.eHornReg'),
+			Hammertown: document.querySelector('.hammerTownReg'),
+			Step: document.querySelector('.stepReg'),
+			Face: document.querySelector('.faceReg'),
+			Pritchel: document.querySelector('.pritchelReg'),
+			Hardie: document.querySelector('.hardieReg'),
+			Chica: document.querySelector('.chicaReg'),
+			Bayshore: document.querySelector('.bayshoreReg'),
+			Bull: document.querySelector('.bullReg'),
+			Amalgopolis: document.querySelector('.amalgoReg'),
+			Arlen: document.querySelector('.arlenReg'),
+			Cuprite: document.querySelector('.cupriteReg'),
+			Santo: document.querySelector('.santoReg'),
+			Haustin: document.querySelector('.haustinReg'),
+			Duro: document.querySelector('.duroReg'),
+			Karensville: document.querySelector('.karenReg'),
+			Skillet: document.querySelector('.skilletReg'),
+			Fort: document.querySelector('.fortReg'),
+		}
+		
 		this.startup = undefined;
 		
 		this.contentWarningAccepted = false;
@@ -106,6 +128,21 @@ class UI {
 		this.hide(this.elements.inGameModal);
 		this.elements.inGameModalButton1.onclick = '';
 		this.elements.inGameModalButton2.onclick = '';
+	}
+	
+	setupRegions(simulation) {
+		for (const theRegion in this.regions) {
+			const region = theRegion;
+			this.regions[region].onclick = function(e) {
+				let turningPowerOff = simulation.world[region].isPowered;
+				simulation.world[region].isPowered = !turningPowerOff;
+				if (turningPowerOff) {
+					this.regions[region].classList.add('unpowered');
+				} else {
+					this.regions[region].classList.remove('unpowered');
+				}
+			}.bind(this);
+		}
 	}
 }
 
