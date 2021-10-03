@@ -128,7 +128,11 @@ class Game {
 	}
 	
 	electionCycleOver() {
-		// TODO: something
+		const orangeWin = this.simulation.donations.getOrangeDonations() > this.simulation.getPurpleDonations();
+		this.ui.showInGameModal(
+			`${orangeWin ? 'Orangeatives' : 'Purpleists'} win the goobernatorial election!`, 
+			orangeWin ? `Another four years of ${orangeGovernors[this.currentGovernorIndex]}` : `Looks like Tegzans weren't pleased with the way ${orangeGovernors[this.currentGovernorIndex]} ran things.`,
+		);
 	}
 	
 	updateUI() {
