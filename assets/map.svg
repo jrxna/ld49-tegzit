@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 638 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <rect x="0" y="0" width="638" height="400" style="fill:rgb(78,65,56);"/>
+    <g>
+        <path d="M192.688,52.243C190.469,49.634 383.366,44.3 383.366,44.3C383.366,44.3 340.229,73.17 366.458,139.8C402.069,230.264 497.458,206.897 497.458,206.897L496.256,330.084L260.814,328.904C260.814,328.904 265.613,292.411 263.303,292.061C106.967,268.309 82.176,297.223 82.176,297.223C82.176,297.223 115.587,182.631 215.838,167.641C219.385,167.111 246.936,116.014 192.688,52.243Z" style="fill:rgb(153,185,152);"/>
+        <path d="M-0.665,69.54L95.59,64.338L192.217,57.027L95.59,64.338L94.228,-0.988" style="fill:none;stroke:black;stroke-width:1px;"/>
+        <path d="M83.08,300.291L-0.083,301.982" style="fill:none;stroke:black;stroke-width:1px;"/>
+        <path d="M261.074,329.174L253.184,401.495" style="fill:none;stroke:black;stroke-width:1px;"/>
+        <path d="M494.931,329.276L492.292,403.39" style="fill:none;stroke:black;stroke-width:1px;"/>
+        <path d="M386.556,-0.557C338.994,-13.628 642.424,0.697 642.424,0.697C642.424,0.697 692.891,298.429 642.254,287.84C591.617,277.25 582.801,241.664 576.557,234.73C570.312,227.796 564.876,205.023 497.136,209.796C425.127,214.87 290.096,195.432 376.251,45.125C382.452,34.308 402.562,3.841 386.556,-0.557Z" style="fill:rgb(15,0,62);"/>
+        <g transform="matrix(1.64846,0,0,1.64846,-689.32,228.418)">
+            <text x="439.529px" y="75.561px" style="font-family:'Copperplate';font-size:12px;fill-opacity:0.2;">N<tspan x="450.32px 458.448px 467.236px 472.352px 483.803px 493.263px 501.391px 506.843px 514.97px " y="75.561px 75.561px 75.561px 75.561px 75.561px 75.561px 75.561px 75.561px 75.561px ">eo Musico</tspan></text>
+        </g>
+        <g transform="matrix(1.71746,0,0,1.71746,-443.998,239.703)">
+            <text x="439.529px" y="75.561px" style="font-family:'Copperplate';font-size:12px;fill-opacity:0.2;">T<tspan x="448.316px 456.444px 465.232px 473.36px 481.487px 490.275px 498.403px " y="75.561px 75.561px 75.561px 75.561px 75.561px 75.561px 75.561px ">egzarka</tspan></text>
+        </g>
+        <g transform="matrix(1.47988,0,0,1.47988,-636.824,43.7874)">
+            <text x="450.936px" y="75.561px" style="font-family:'Copperplate';font-size:12px;fill-opacity:0.2;">O<tspan x="461.728px 471.848px 481.967px 492.087px 501.547px 506.999px 516.458px " y="75.561px 75.561px 75.561px 75.561px 75.561px 75.561px 75.561px ">CCUPIED</tspan></text>
+            <text x="440.257px" y="87.789px" style="font-family:'Copperplate';font-size:12px;fill-opacity:0.2;">W<tspan x="453.04px 462.5px 471.96px 480.748px 485.863px 494.651px 504.111px 514.231px 523.018px 528.47px " y="87.789px 87.789px 87.789px 87.789px 87.789px 87.789px 87.789px 87.789px 87.789px 87.789px ">EST TEGZIT</tspan></text>
+        </g>
+        <g transform="matrix(1.75152,0,0,1.75152,-588.501,-106.427)">
+            <text x="439.529px" y="75.561px" style="font-family:'Copperplate';font-size:12px;fill-opacity:0.2;">M<tspan x="450.98px 460.44px 468.568px 474.02px 482.147px " y="75.561px 75.561px 75.561px 75.561px 75.561px ">usico</tspan></text>
+        </g>
+        <g transform="matrix(1.69906,0,0,1.69906,-232.565,209.282)">
+            <text x="439.529px" y="75.561px" style="font-family:'Copperplate';font-size:12px;fill-opacity:0.2;">L<tspan x="448.316px 456.444px 467.236px 475.364px 483.491px " y="75.561px 75.561px 75.561px 75.561px 75.561px ">awsan</tspan></text>
+        </g>
+        <g transform="matrix(0.999991,-0.00418185,0.00418185,0.999991,-21.1882,-66.656)">
+            <g transform="matrix(0.449768,0.893145,-0.893145,0.449768,365.184,-341.056)">
+                <text x="459.396px" y="125.859px" style="font-family:'Copperplate';font-size:24px;fill:white;fill-opacity:0.29;">S</text>
+            </g>
+            <g transform="matrix(0.521165,0.853456,-0.853456,0.521165,345.905,-331.258)">
+                <text x="468.163px" y="142.635px" style="font-family:'Copperplate';font-size:24px;fill:white;fill-opacity:0.29;">i</text>
+            </g>
+            <g transform="matrix(0.584085,0.811692,-0.811692,0.584085,320.399,-321.419)">
+                <text x="473.838px" y="151.933px" style="font-family:'Copperplate';font-size:24px;fill:white;fill-opacity:0.29;">g</text>
+            </g>
+            <g transform="matrix(0.655732,0.754994,-0.754994,0.655732,292.103,-308.432)">
+                <text x="484.253px" y="166.08px" style="font-family:'Copperplate';font-size:24px;fill:white;fill-opacity:0.29;">s</text>
+            </g>
+            <g transform="matrix(0.721293,0.69263,-0.69263,0.721293,261.453,-293.169)">
+                <text x="495.011px" y="178.291px" style="font-family:'Copperplate';font-size:24px;fill:white;fill-opacity:0.29;">b</text>
+            </g>
+            <g transform="matrix(0.779516,0.626382,-0.626382,0.779516,231.187,-276.097)">
+                <text x="507.782px" y="190.346px" style="font-family:'Copperplate';font-size:24px;fill:white;fill-opacity:0.29;">e</text>
+            </g>
+            <g transform="matrix(0.827655,0.561237,-0.561237,0.827655,202.213,-257.591)">
+                <text x="520.526px" y="200.456px" style="font-family:'Copperplate';font-size:24px;fill:white;fill-opacity:0.29;">e</text>
+            </g>
+            <g transform="matrix(0.895043,0.445981,-0.445981,0.895043,152.729,-219.57)">
+                <text x="542.859px" y="214.699px" style="font-family:'Copperplate';font-size:24px;fill:white;fill-opacity:0.29;">B</text>
+            </g>
+            <g transform="matrix(0.92772,0.373277,-0.373277,0.92772,123.998,-193.273)">
+                <text x="561.059px" y="223.546px" style="font-family:'Copperplate';font-size:24px;fill:white;fill-opacity:0.29;">a</text>
+            </g>
+            <g transform="matrix(0.950718,0.310058,-0.310058,0.950718,99.5595,-167.338)">
+                <text x="576.181px" y="229.519px" style="font-family:'Copperplate';font-size:24px;fill:white;fill-opacity:0.29;">y</text>
+            </g>
+        </g>
+    </g>
+    <path d="M92.001,288.333L116.386,279.893L138.275,279.132L133.903,218.778L109.107,245.671L92.001,288.333Z" style="fill:rgb(71,167,165);"/>
+    <g transform="matrix(1,0,0,1,-2.2479,0.654496)">
+        <path d="M143.278,210.801L145.166,244.259L202.464,246.658L205.671,181.061L173.255,192.533L143.278,210.801Z" style="fill:rgb(71,167,165);"/>
+    </g>
+    <path d="M142.803,251.128L267.332,256.616L264.979,287.047L143.56,274.559L142.803,251.128Z" style="fill:rgb(71,167,165);"/>
+    <path d="M266.538,321.836L274.56,255.975L301.185,258.074L338.461,323.369L266.538,321.836Z" style="fill:rgb(71,167,165);"/>
+    <path d="M311.043,257.144L347.267,323.5L391.932,324.296L391.29,261.548L311.043,257.144Z" style="fill:rgb(71,167,165);"/>
+    <path d="M399.999,261.537L399.633,323.955L490.345,325.733L490.808,264.861L399.999,261.537Z" style="fill:rgb(71,167,165);"/>
+    <path d="M489.703,216.158L490.933,260.683L402.913,258.588L439.431,213.656L489.703,216.158Z" style="fill:rgb(71,167,165);"/>
+    <path d="M393.412,204.306L432.221,211.962L395.872,255.4L356.35,252.61L356.35,202.414L393.412,204.306Z" style="fill:rgb(71,167,165);"/>
+    <path d="M384.926,197.153L351.394,164.53L319.68,164.303L320.58,194.579L384.926,197.153Z" style="fill:rgb(71,167,165);"/>
+    <path d="M349.941,202.392L347.837,253.174L273.081,249.35L278.875,201.387L349.941,202.392Z" style="fill:rgb(71,167,165);"/>
+    <path d="M293.181,138.712L317.782,161.649L350.003,161.602L343.791,139.735L293.181,138.712Z" style="fill:rgb(71,167,165);"/>
+    <path d="M223.273,168.16L232.659,140.076L258.204,139.468L260.406,166.841L223.273,168.16Z" style="fill:rgb(71,167,165);"/>
+    <path d="M266.449,167.678L280.372,167.003L281.228,106.76L264.604,107.056L266.449,167.678Z" style="fill:rgb(71,167,165);"/>
+    <path d="M289.473,106.577L289.089,135.457L342.195,136.667L328.718,107.892L289.473,106.577Z" style="fill:rgb(71,167,165);"/>
+    <path d="M344.023,126.77L347.115,97.345L370.477,49.685L333.683,51.673L331.481,101.543L344.023,126.77Z" style="fill:rgb(71,167,165);"/>
+    <path d="M265.157,102.664L326.722,103.344L327.88,53.03L265.246,54.307L265.157,102.664Z" style="fill:rgb(71,167,165);"/>
+    <path d="M202.754,56.466L260.629,54.739L259.951,133.077L232.775,134.133L226.072,93.862L202.754,56.466Z" style="fill:rgb(71,167,165);"/>
+    <path d="M313.432,192.647L313.699,165.058L287.2,143.144L287.788,170.549L313.432,192.647Z" style="fill:rgb(71,167,165);"/>
+    <path d="M301.702,194.091L278.491,174.063L214.948,173.989L211.65,192.159L301.702,194.091Z" style="fill:rgb(71,167,165);"/>
+    <path d="M210.509,196.747L272.466,200.23L267.1,249.162L208.013,246.464L210.509,196.747Z" style="fill:rgb(71,167,165);"/>
+    <g transform="matrix(3.55109,0,0,3.55109,-1363.12,-57.3454)">
+        <text x="439.529px" y="75.561px" style="font-family:'Copperplate';font-size:12px;fill-opacity:0.2;">T<tspan x="448.316px 457.776px 467.896px 476.684px 482.135px " y="75.561px 75.561px 75.561px 75.561px 75.561px ">EGZIT</tspan></text>
+    </g>
+</svg>
