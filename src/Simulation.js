@@ -11,7 +11,23 @@ class Simulation {
 	constructor() {
 		this.world = {
 			Youstonia: new Subgrid(2304580 * 0.3, 2304580 * 0.7),
-			Amalgopolis: new Subgrid(7637387 * 0.5, 7637387 * 0.5),
+			Amalgopolis: new Subgrid(7637388 * 0.5, 7637388 * 0.5),
+			Horn: new Subgrid(18371, 11212),
+			Hammertown: new Subgrid(12837, 8193),
+			Step: new Subgrid(8912, 1038),
+			Face: new Subgrid(12392, 7432),
+			Pritchel: new Subgrid(19328, 12739),
+			Hardie: new Subgrid(21378, 27984),
+			Chica: new Subgrid(3723, 3719),
+			Bayshore: new Subgrid(237189, 273198),
+			Arlen: new Subgrid(92831, 32798),
+			Cuprite: new Subgrid(23789, 12379),
+			Santo: new Subgrid(243789, 78231),
+			Haustin: new Subgrid(1738291, 2382178),
+			Duro: new Subgrid(237129, 128722),
+			Karensville: new Subgrid(2137891, 982388),
+			Skillet: new Subgrid(23171,12879),
+			Fort: new Subgrid(2137981, 1239787),
 		}
 		this.donations = new Donations();
 		this.gridWinterized = false;
