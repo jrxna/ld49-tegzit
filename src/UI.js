@@ -45,6 +45,7 @@ class UI {
 			Hardie: document.querySelector('.hardieReg'),
 			Chica: document.querySelector('.chicaReg'),
 			Bayshore: document.querySelector('.bayshoreReg'),
+			Youstonia: document.querySelector('.youstoniaReg'),
 			Bull: document.querySelector('.bullReg'),
 			Amalgopolis: document.querySelector('.amalgoReg'),
 			Arlen: document.querySelector('.arlenReg'),

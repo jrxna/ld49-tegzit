@@ -19,6 +19,7 @@ class Simulation {
 			Face: new Subgrid(12392, 7432),
 			Pritchel: new Subgrid(19328, 12739),
 			Hardie: new Subgrid(21378, 27984),
+			Bull: new Subgrid(2137911, 1923771),
 			Chica: new Subgrid(3723, 3719),
 			Bayshore: new Subgrid(237189, 273198),
 			Arlen: new Subgrid(92831, 32798),
