@@ -94,8 +94,9 @@ class Simulation {
 		let total = 0;
 		let totalPop = 0;
 		for (const subgrid in this.world) {
-			total += this.world[subgrid].purpleCandidateApprovalRating;
-			totalPop += this.world[subgrid].getPopulation();
+			const purplePop = this.world[subgrid].purplePopulation;
+			total += this.world[subgrid].purpleCandidateApprovalRating * purplePop;
+			totalPop += purplePop;
 		}
 		return total / totalPop;
 	}

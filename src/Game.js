@@ -65,6 +65,9 @@ class Game {
 		const hourlyGazzUsage = this.simulation.hourTick(50, this.orangeGovernor);
 		this.simulation.donations.applyGazzDonations(hourlyGazzUsage, this.orangeGovernor);
 		this.ui.outputs.gazzUsage.textContent = Math.round(hourlyGazzUsage);
+		
+		this.simulation.donations.applyPurpleGrassrootsDonations(this.simulation.getPurplePopulation(), this.simulation.getAvgPurpleApprovalRating());
+		
 		this.updateUI();
 	}
 	
