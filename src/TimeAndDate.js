@@ -5,15 +5,49 @@ class TimeAndDate {
 		this.stormStartDay = day;
 		this.hour = hour;
 		this.minute = minute;
+		this.minuteInterval = undefined;
+		this.minuteCallback = undefined;
+		this.hourCallback = undefined;
+		this.dayCallback = undefined;
 	}
 	
-	advanceHour() {
-		this.minute = 0;
-		this.hour += 1;
-		if (this.hour >= 24) {
-			this.day += 1;
-			this.hour = 0;
+	// also advances hour/ day if necessary
+	advanceMinute() {
+		this.minute ++;
+		
+		if (this.minute >= 60) {
+			this.minute = 0;
+			this.hour += 1;
+			
+			if (this.hour >= 24) {
+				this.day += 1;
+				this.hour = 0;
+				
+				if(this.dayCallback != undefined) {
+					this.dayCallback();
+				}
+			}
+			
+			if(this.hourCallback != undefined) {
+				this.hourCallback();
+			}
 		}
+		
+		if(this.minuteCallback != undefined) {
+			this.minuteCallback();
+		}
+	}
+	
+	startTime(minuteCallback, hourCallback, dayCallback) {
+		this.minuteCallback = minuteCallback;
+		this.hourCallback = hourCallback;
+		this.dayCallback = dayCallback;
+		
+		this.minuteInterval = setInterval(this.advanceMinute.bind(this), 166);
+	}
+	
+	stopTime() {
+		clearInterval(this.minuteInterval);
 	}
 	
 	advanceYear() {

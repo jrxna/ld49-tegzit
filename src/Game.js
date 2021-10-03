@@ -50,9 +50,10 @@ class Game {
 	}
 	
 	continueGame() {
-		// TODO: something
 		this.ui.clearInGameModal();
 		this.updateUI();
+		
+		this.gameState.timeAndDate.startTime(this.updateDate.bind(this), function() { this.gameState.timeAndDate.stopTime(); }.bind(this), undefined);
 	}
 	
 	updateUI() {
@@ -73,6 +74,10 @@ class Game {
 		this.ui.outputs.popApproval.textContent = this.simulation.getAvgPurpleApprovalRating();
 		this.ui.outputs.popInDanger.textContent = this.simulation.getPopulationInDanger();
 		// TODO: the percent change figures
+	}
+	
+	updateDate() {
+		this.ui.outputs.date.textContent = this.gameState.timeAndDate.getFriendlyString();
 	}
 }
 
