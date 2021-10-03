@@ -9,7 +9,7 @@ class Game {
 		this.simulation = new Simulation();
 		this.gameState = new GameState();
 		
-		this.orangeGovernor = true; // TODO: make this dynamic or something
+		this.orangeGovernor = true; // TODO: allow playing as purple?
 		this.currentGovernorIndex = 0;
 		
 		this.ui.startup = this.startGame.bind(this);
