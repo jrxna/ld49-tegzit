@@ -36,7 +36,7 @@ class Game {
 		this.ui.clearInGameModal();
 		this.ui.showInGameModal(
 			"💰 Money money money",
-			"Your friends who own the power plants send a cool million your way as thanks for the complete lack of regulations.", 
+			"Your friends who own the power plants send a cool million your way as thanks for the complete lack of regulations. Energy companies in Tegzit can charge $9000 during a shortage for a unit of electricity that would normally cost $50, and love to share with the politicians who allow those shortages to happen.", 
 			"Cool! In Tegzit, political donations don't count as bribes.", 
 			this.continueGame.bind(this)
 		);
@@ -48,7 +48,7 @@ class Game {
 		this.ui.clearInGameModal();
 		this.ui.showInGameModal(
 			"💸 Tsk tsk",
-			"\"I thought I could count on the great state of Tegzit to be friendly to my business,\" your friend who owns a power plant tells you. Your reelection campaign is going to have a harder time raising money if you keep this up.", 
+			"\"I thought I could count on the great state of Tegzit to be friendly to my business instead of telling me what to do,\" says your friend who owns a power plant. You're going to have a harder time raising money for your reelection campaign if you keep this up.", 
 			"Oh", 
 			this.continueGame.bind(this)
 		);
@@ -81,15 +81,18 @@ class Game {
 		// TODO: some kind of dialog box or something?
 		const generatorPurchases = this.simulation.buyGenerators();
 		this.simulation.donations.applyGeneratorDonations(generatorPurchases, this.orangeGovernor);
+		this.simulation.applyEnergyDonations(this.simulation.gridWinterized, this.orangeGovernor);
 	}
 	
 	updateUI() {
+		const temperature = this.gameState.storm.calculateTemperatureAtHour(this.gameState.timeAndDate.hour);
+		
 		this.ui.outputs.governorName.textContent = orangeGovernors[this.currentGovernorIndex];
 		this.ui.outputs.orangeFunds.textContent = this.simulation.donations.getOrangeDonations();
 		this.ui.outputs.purpleFunds.textContent = this.simulation.donations.getPurpleDonations();
 		this.ui.outputs.date.textContent = this.gameState.timeAndDate.getFriendlyString();
-		this.ui.outputs.temperature.textContent = Math.round(this.gameState.storm.calculateTemperatureAtHour(this.gameState.timeAndDate.hour));
-		// TODO: grid stability
+		this.ui.outputs.temperature.textContent = Math.round(temperature);
+		this.ui.outputs.gridStability.textContent = Math.round(this.simulation.getAvailablePowerRatio(temperature) * 100);
 		this.ui.outputs.genDemand.textContent = `${this.simulation.getGenDemandPop()}`;
 		this.ui.outputs.genCount.textContent = this.simulation.getGenCount();
 		this.ui.outputs.gazzIndustryDonations.textContent = this.simulation.donations.gazzIndustryDonations;

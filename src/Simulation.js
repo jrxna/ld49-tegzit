@@ -8,6 +8,12 @@ const GAZZ_USAGE_PER_HOUR_PER_GEN = 0.5;
 
 import { Donations } from './Donations.js';
 
+// from https://stackoverflow.com/a/15106541
+function randomProperty (obj) {
+	var keys = Object.keys(obj);
+	return obj[keys[ keys.length * Math.random() << 0]];
+}
+
 class Simulation {
 	constructor() {
 		this.world = {
@@ -34,6 +40,26 @@ class Simulation {
 		}
 		this.donations = new Donations();
 		this.gridWinterized = false;
+		this.availablePowerRatio = 1;
+	}
+	
+	getAvailablePowerRatio(temp) {
+		let ratio = 1;
+		if (this.gridWinterized) {
+			if (temp > 32) {
+				ratio = 1;
+			} else {
+				ratio = 0.95;
+			}
+		} else {
+			if (temp > 32) {
+				ratio = 1;
+			} else {
+				ratio = 0.6;
+			}
+		}
+		this.availablePowerRatio = ratio;
+		return ratio;
 	}
 	
 	getPopulation() {
@@ -91,6 +117,24 @@ class Simulation {
 		return isPoweredPopulation;
 	}
 	
+	getPopDependentOnGrid() {
+		let pop = 0;
+		for(const subgrid in this.world) {
+			pop += this.world[subgrid].getPopDependentOnGrid();
+		}
+		return pop;
+	}
+	
+	getPopUsingGrid() {
+		let pop = 0;
+		for(const subgrid in this.world) {
+			if(this.world[subgrid].isPowered) {
+				pop += this.world[subgrid].getPopDependentOnGrid();
+			}
+		}
+		return pop;
+	}
+	
 	getAvgPurpleApprovalRating() {
 		let total = 0;
 		let totalPop = 0;
@@ -104,8 +148,17 @@ class Simulation {
 	
 	// returns gazz usage from this hour
 	hourTick(outdoorTemperature = 72, orangeGovernorInPower = true) {
-		// TODO: set subgrid power status based on power plant capacity?
+		// shut down subgrids at random if power plants are over capacity
+		const popCapacity = this.getPopulation() * this.getAvailablePowerRatio(outdoorTemperature);
+		let popUsingGrid = this.getPopUsingGrid();
+		while (popUsingGrid > popCapacity) {
+			// shut off city at random
+			const randomCity = randomProperty(this.world);
+			randomCity.isPowered = false;
+			popUsingGrid -= randomCity.getPopulation();
+		}
 		
+		// calculate gazz usage
 		let gazzUsage = 0;
 		for (const subgrid in this.world) {
 			gazzUsage += this.world[subgrid].hourTick(outdoorTemperature, orangeGovernorInPower);
@@ -161,6 +214,12 @@ class Subgrid {
 				total: purpleInDanger + orangeInDanger
 			};
 		}
+	}
+	
+	getPopDependentOnGrid() {
+		const pop = this.getPopulation();
+		const popWithGens = this.generatorCount * POP_PER_GEN;
+		return pop - popWithGens;
 	}
 	
 	// passing of one hour, returns gazz usage in barrels

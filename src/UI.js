@@ -136,11 +136,17 @@ class UI {
 			const region = theRegion;
 			this.regions[region].onclick = function(e) {
 				let turningPowerOff = simulation.world[region].isPowered;
-				simulation.world[region].isPowered = !turningPowerOff;
 				if (turningPowerOff) {
 					this.regions[region].classList.add('unpowered');
+					simulation.world[region].isPowered = false;
 				} else {
-					this.regions[region].classList.remove('unpowered');
+					const excessPowerPopCapacity = simulation.availablePowerRatio * simulation.getPopulation() - simulation.getPopUsingGrid();
+					const dependentPopInRegion = simulation.world[region].getPopDependentOnGrid();
+					console.log(excessPowerPopCapacity, dependentPopInRegion);
+					if(dependentPopInRegion <= excessPowerPopCapacity) {
+						this.regions[region].classList.remove('unpowered');
+						simulation.world[region].isPowered = true;
+					}
 				}
 			}.bind(this);
 		}
@@ -164,8 +170,8 @@ class UI {
 				this.regions[region].classList.remove('cold');
 			}
 			
-			// if more than 1% of the region is in danger, show danger warning
-			if (simRegion.getPopulationInDanger().total > simRegion.getPopulation() / 100) {
+			// if region is close to danger level, show danger warning
+			if (simRegion.indoorTemperature < 52) {
 				this.regions[region].classList.add('danger');
 			} else {
 				this.regions[region].classList.remove('danger');
