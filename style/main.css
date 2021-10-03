@@ -1,6 +1,7 @@
 html {
 	background-color: #111;
 	color: white;
+	font-family: news_cycleregular, sans-serif;
 }
 
 .fullScreenModal {
@@ -29,6 +30,9 @@ html {
 .acceptContentWarning {
 	font-size: 1.6rem;
 }
+.contentWarning {
+	font-family: ui-sans-serif, system-ui, sans-serif;
+}
 
 .orange {
 	color: darkorange;
@@ -51,6 +55,7 @@ html {
 }
 
 .value {
+	font-family: ui-monospace, monospace;
 	font-variant-numeric: tabular-nums;
 }
 
