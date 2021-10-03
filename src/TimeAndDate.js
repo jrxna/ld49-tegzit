@@ -46,6 +46,11 @@ class TimeAndDate {
 		this.minuteInterval = setInterval(this.advanceMinute.bind(this), 100);
 	}
 	
+	resumeTime() {
+		clearInterval(this.minuteInterval);
+		this.minuteInterval = setInterval(this.advanceMinute.bind(this), 100);
+	}
+	
 	stopTime() {
 		clearInterval(this.minuteInterval);
 	}
