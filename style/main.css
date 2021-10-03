@@ -20,7 +20,7 @@ html {
 	margin-left: auto;
 	margin-right: auto;
 }
-.fullScreenModal h2 {
+.fullScreenModal > h1, .fullScreenModal > h2, .fullScreenModal > h3 {
 	text-align: center;
 }
 .fullScreenModalButton {
