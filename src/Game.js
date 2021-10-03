@@ -36,7 +36,7 @@ class Game {
 		this.ui.clearInGameModal();
 		this.ui.showInGameModal(
 			"💰 Money money money",
-			"Your friends who own the power plants send a cool million your way as thanks for the complete lack of regulations. Energy companies in Tegzit can charge $9000 during a shortage for a unit of electricity that would normally cost $50, and love to share with the politicians who allow those shortages to happen.", 
+			"Your friend who owns a power plant sends a cool million your way as thanks for the complete lack of regulations. Energy companies in Tegzit can charge $9000 during a shortage for a unit of electricity that would normally cost $50, and love to share with the politicians who allow those shortages to happen.", 
 			"Cool! In Tegzit, political donations don't count as bribes.", 
 			this.continueGame.bind(this)
 		);
