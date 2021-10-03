@@ -2,7 +2,7 @@ const SAFE_TEMP = 60; // vaguely based on https://assets.publishing.service.gov.
 const PERCENT_DANGER_PER_DEGREE = 0.1;
 const POP_PER_GEN = 3; // population protected by a single generator, assume household of 3
 
-const GAZZ_USAGE_PER_HOUR_PER_POP = 0.25;
+const GAZZ_USAGE_PER_HOUR_PER_POP = 0.025;
 const GAZZ_USAGE_PER_HOUR_PER_GEN = 0.5;
 
 import { Donations } from './Donations.js';
@@ -118,6 +118,7 @@ class Simulation {
 		for (const subgrid in this.world) {
 			totalGensBought += this.world[subgrid].buyGenerators();
 		}
+		totalGensBought = Math.round(totalGensBought);
 		return totalGensBought;
 	}
 }
@@ -178,7 +179,7 @@ class Subgrid {
 		
 		// update generator demand
 		if(!this.isPowered && this.indoorTemperature < SAFE_TEMP) {
-			this.generatorDemandPop += this.orangePopulation * 0.01;
+			this.generatorDemandPop += Math.ceil(this.orangePopulation * 0.01);
 		}
 		
 		// if there are more generators than people, reduce generators
@@ -206,7 +207,7 @@ class Subgrid {
 		
 		// calculate gazz usage
 		let gazzUsage = 0;
-		if (this.powered) {
+		if (this.isPowered) {
 			gazzUsage = GAZZ_USAGE_PER_HOUR_PER_POP * this.getPopulation();
 		} else {
 			const generatorGazzUsage = this.generatorCount * GAZZ_USAGE_PER_HOUR_PER_GEN;

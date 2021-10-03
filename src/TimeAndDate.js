@@ -43,7 +43,7 @@ class TimeAndDate {
 		this.hourCallback = hourCallback;
 		this.dayCallback = dayCallback;
 		
-		this.minuteInterval = setInterval(this.advanceMinute.bind(this), 166);
+		this.minuteInterval = setInterval(this.advanceMinute.bind(this), 100);
 	}
 	
 	stopTime() {

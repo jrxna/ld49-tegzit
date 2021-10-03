@@ -127,10 +127,6 @@ html {
 	content: "$";
 }
 
-.genDemandValue::after {
-	content: "%";
-}
-
 .popApproval::after {
 	content: "%";
 }

@@ -53,7 +53,21 @@ class Game {
 		this.ui.clearInGameModal();
 		this.updateUI();
 		
-		this.gameState.timeAndDate.startTime(this.updateDate.bind(this), function() { this.gameState.timeAndDate.stopTime(); }.bind(this), undefined);
+		this.gameState.timeAndDate.startTime(this.updateDate.bind(this), this.hourlyUpdate.bind(this), this.dailyUpdate.bind(this));
+	}
+	
+	hourlyUpdate() {
+		// TODO: actual temperature
+		const hourlyGazzUsage = this.simulation.hourTick(50, this.orangeGovernor);
+		this.simulation.donations.applyGazzDonations(hourlyGazzUsage, this.orangeGovernor);
+		this.ui.outputs.gazzUsage.textContent = Math.round(hourlyGazzUsage);
+		this.updateUI();
+	}
+	
+	dailyUpdate() {
+		// TODO: some kind of dialog box or something?
+		const generatorPurchases = this.simulation.buyGenerators();
+		this.simulation.donations.applyGeneratorDonations(generatorPurchases, this.orangeGovernor);
 	}
 	
 	updateUI() {
@@ -62,8 +76,7 @@ class Game {
 		this.ui.outputs.date.textContent = this.gameState.timeAndDate.getFriendlyString();
 		// TODO: set temperature field
 		// TODO: grid stability
-		// TODO (somewhere): gazz usage
-		// TODO: generator demand
+		this.ui.outputs.genDemand.textContent = `${this.simulation.getGenDemandPop()}`;
 		this.ui.outputs.genCount.textContent = this.simulation.getGenCount();
 		this.ui.outputs.gazzIndustryDonations.textContent = this.simulation.donations.gazzIndustryDonations;
 		this.ui.outputs.generatorIndustryDonations.textContent = this.simulation.donations.generatorIndustryDonations;
