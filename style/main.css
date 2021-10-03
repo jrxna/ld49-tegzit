@@ -57,6 +57,7 @@ html {
 .positiveChange {
 	font-weight: bold;
 	color: lawngreen;
+	display: none;
 }
 .positiveChange::before {
 	content: "(+"
@@ -68,6 +69,7 @@ html {
 .negativeChange {
 	font-weight: bold;
 	color: darkred;
+	display: none;
 }
 .negativeChange::before {
 	content: "(-"
