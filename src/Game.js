@@ -65,7 +65,7 @@ class Game {
 		} else {
 			this.ui.showInGameModal(
 				"💸 Tsk tsk",
-				"Another storm is on the way, and your former donor looks unhappy. \"How are we supposed to make money off the unsuspecting goobers with you averting all these crises?\" he asks.", 
+				"Another storm is on the way, and your former donor looks unhappy. \"How are we supposed to make money off the unsuspecting goobers if you keep averting all these crises?\" he asks.", 
 				"Uhhh", 
 				this.continueGame.bind(this)
 			);
